@@ -46,7 +46,7 @@ queue<item>::~queue()
 	free(Queue);
 }
 
-template <typename T>
+template <typename T, typename T2 >
 class RBTree
 {
 private:
@@ -55,7 +55,7 @@ private:
 	{
 
 	public:
-		node(T key, T data, node * next1 = nullptr, node * next2 = nullptr) {
+		node(T key, T2 data, node * next1 = nullptr, node * next2 = nullptr) {
 			this->data = data;
 			this->next_left = next1;
 			this->next_right = next2;
@@ -79,7 +79,7 @@ private:
 public:
 	RBTree();
 	~RBTree();
-	class TreeIterator : public Iterator<T> {
+	class TreeIterator : public Iterator<T, T2> {
 	protected:
 		node *current;
 		TreeIterator(node* root) : current(root) { }
@@ -87,7 +87,7 @@ public:
 	public:
 		bool operator==(const nullptr_t) const override { return current == nullptr; }
 		bool operator!=(const nullptr_t) const override { return !operator==(nullptr); }
-		T operator*() const override { return current->data; }
+		T2 operator*() const override { return current->data; }
 		T current_key() { return current->key; }
 		char current_color() { return current->color; }
 
@@ -118,43 +118,27 @@ public:
 	node *get_successor(node *);
 
 	//void add_first(node*);
-	void add_first(T, T);
+	void add_first(T, T2);
 	void remove(T);
 	void delfix(node*);
-	T find(T);
+	T2 find(T);
 
-	T get_keys();
+	void get_keys();
 	T get_colors();
 	void get_value();
 	void clear();
-	void insert(T,T);
+	void insert(T,T2);
 	void insertfix(node *t);
 	void leftrotate(node *);
 	void rightrotate(node *);
 
-	DftIterator create_dft_iterator() { return DftIterator(root, size); }
 	BftIterator create_bft_iterator() { return BftIterator(root, size); }
 };
 
-template<typename T>
-void RBTree<T>::DftIterator::operator++(T)
-{
-	if (this->current->next_right != nullptr)
-		nodes.push(this->current->next_right);
-	if (this->current->next_left)
-		this->current = this->current->next_left;
-	else {
-		if (nodes.size() > 0) {
-			this->current = nodes.top();
-			nodes.pop();
-		}
-		else
-			this->current = nullptr;
-	}
-}
 
-template<typename T>
-void RBTree<T>::BftIterator::operator++(T)
+
+template<typename T, typename T2>
+void RBTree<T, T2>::BftIterator::operator++(T)
 {
 	if (this->current->next_left != nullptr)
 		nodes.push(this->current->next_left);

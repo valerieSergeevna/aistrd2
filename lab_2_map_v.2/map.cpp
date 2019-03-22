@@ -1,18 +1,17 @@
-#include "RBTree.h"
+#include "map.h"
 #include "Iterator.h"
 #include <stdexcept>
 
 
-
-template<typename T>
-RBTree<T>::RBTree()
+template <typename T, typename T2 >
+RBTree<T,T2>::RBTree()
 {
 	reset_list();
 	size = 0;
 }
 
-template<typename T>
-RBTree<T>::~RBTree()
+template <typename T, typename T2 >
+RBTree<T,T2>::~RBTree()
 {
 	clear();
 /*	if (root != nullptr)
@@ -47,16 +46,16 @@ void RBTree<T>::add_first(node *cur)
 	size++;
 }
 */
-template<typename T>
-void RBTree<T>::add_first(T key, T val)
+template <typename T, typename T2 >
+void RBTree<T,T2>::add_first(T key, T2 val)
 {
 
 	root = new node(key, val);
 	root->parent = nullptr;
 	size++;
 }
-template<typename T>
-void RBTree<T>::remove(T key)
+template <typename T, typename T2 >
+void RBTree<T,T2>::remove(T key)
 {
 	if (this->root == nullptr)
 	{
@@ -119,8 +118,8 @@ void RBTree<T>::remove(T key)
 			delfix(q);
 	}
 }
-template<typename T>
-void RBTree<T>::delfix(node *p)
+template <typename T, typename T2 >
+void RBTree<T,T2>::delfix(node *p)
 {
 	node *s;
 	while (p != root && p->color == 'b')
@@ -191,8 +190,8 @@ void RBTree<T>::delfix(node *p)
 		root->color = 'b';
 	}
 }
-template<typename T>
-T RBTree<T>::find(T key)
+template <typename T, typename T2 >
+T2 RBTree<T,T2>::find(T key)
 {
 	if (this->root == nullptr)
 	{
@@ -205,8 +204,8 @@ T RBTree<T>::find(T key)
 	throw out_of_range("error");
 }
 
-template<typename T>
-T RBTree<T>::get_keys()
+template <typename T, typename T2 >
+void RBTree<T,T2>::get_keys()
 {
 
 	if (this->root == nullptr)
@@ -220,8 +219,8 @@ T RBTree<T>::get_keys()
 }
 
 
-template<typename T>
-void RBTree<T>::get_value()
+template <typename T, typename T2 >
+void RBTree<T,T2>::get_value()
 {
 	if (this->root == nullptr)
 	{
@@ -235,21 +234,21 @@ void RBTree<T>::get_value()
 	
 }
 
-template<typename T>
-void RBTree<T>::clear()
+template <typename T, typename T2 >
+void RBTree<T,T2>::clear()
 {
 	while (size > 0)
 		remove(root->key);
 }
 
-template<typename T>
-void RBTree<T>::reset_list()
+template <typename T, typename T2 >
+void RBTree<T,T2>::reset_list()
 {
 	//	cur = nullptr;
 	root = nullptr;
 }
 
-template <typename T>
+/*template <typename T>
 typename RBTree<T>::node* RBTree<T>::get_uncle(node *cur) {
 	node *granny = get_grandparent(cur);
 	if (granny == nullptr)
@@ -276,9 +275,9 @@ typename RBTree<T>::node * RBTree<T>::get_sibling(node *current)
 	else
 		return current->parent->next_left;
 }
-
-template<typename T>
-typename RBTree<T>::node * RBTree<T>::get_successor(node *current)
+*/
+template <typename T, typename T2 >
+typename RBTree<T,T2>::node * RBTree<T,T2>::get_successor(node *current)
 {
 	node *successor = NULL;
 	if (current->next_left != NULL)
@@ -297,8 +296,8 @@ typename RBTree<T>::node * RBTree<T>::get_successor(node *current)
 }
 
 
-template <typename T>
-void RBTree<T>::insert(T key, T value) {
+template <typename T, typename T2 >
+void RBTree<T,T2>::insert(T key, T2 value) {
 
 	node *temp, *prev;
 	node *current = new node(key, value);
@@ -329,8 +328,8 @@ void RBTree<T>::insert(T key, T value) {
 	size++;
 }
 
-template<typename T>
-void RBTree<T>::insertfix(node *current) {
+template <typename T, typename T2 >
+void RBTree<T,T2>::insertfix(node *current) {
 	node *uncle;
 	if (root == current)
 	{
@@ -395,8 +394,8 @@ void RBTree<T>::insertfix(node *current) {
 
 }
 
-template<typename T>
-void RBTree<T>::leftrotate(node *current)
+template <typename T, typename T2 >
+void RBTree<T,T2>::leftrotate(node *current)
 {
 	if (current->next_right == nullptr)
 		return;
@@ -426,8 +425,8 @@ void RBTree<T>::leftrotate(node *current)
 	}
 }
 
-template<typename T>
-void RBTree<T>::rightrotate(node *current)
+template <typename T, typename T2 >
+void RBTree<T,T2>::rightrotate(node *current)
 {
 	if (current->next_left == nullptr)
 		return;

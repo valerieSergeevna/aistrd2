@@ -1,4 +1,4 @@
-#include "RBTree.cpp"
+#include "map.cpp"
 #include "Iterator.h"
 #include <conio.h>
 #include <iostream>
@@ -6,7 +6,7 @@
 
 void main()
 {
-	RBTree<int> List;
+	RBTree<int,int> List;
 	List.insert(2, 1);  //     2
 	List.insert(4, 2);  //   1   4
 	List.insert(3, 3);  // 0    3  9
