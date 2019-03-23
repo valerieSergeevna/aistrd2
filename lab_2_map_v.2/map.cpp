@@ -117,6 +117,7 @@ void RBTree<T,T2>::remove(T key)
 		if (successor->color == 0)
 			delfix(temp);
 	}
+	size--;
 }
 template <typename T, typename T2 >
 void RBTree<T,T2>::delfix(node *removable)
