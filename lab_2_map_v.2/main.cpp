@@ -14,6 +14,9 @@ void main()
 	List.insert(9, 4);
 	List.insert(0, 7);
 	List.insert(2, 8);
+	List.insert(3, 8);
+	List.insert(0, 8);
+	List.insert(1, 8);
 	List.remove(2);
 	/*List.insert(13, 'a');
 	List.insert(9, 'b');
