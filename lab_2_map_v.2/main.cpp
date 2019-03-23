@@ -8,7 +8,7 @@ void main()
 {
 	RBTree<int,int> List;
 	List.insert(2, 1);  //     2
-	List.insert(4, 2);  //   1   4
+	/*List.insert(4, 2);  //   1   4
 	List.insert(3, 3);  // 0    3  9
 	List.insert(1, 4);
 	List.insert(9, 4);
@@ -17,7 +17,7 @@ void main()
 	List.insert(3, 8);
 	List.insert(0, 8);
 	List.insert(1, 8);
-	List.remove(2);
+	List.remove(2);*/
 	/*List.insert(13, 'a');
 	List.insert(9, 'b');
 	List.insert(12, 'c');

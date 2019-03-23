@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab_2_map_v.2", "lab_2_map_v.2\lab_2_map_v.2.vcxproj", "{AFFC08DF-0572-442F-B573-03D779155667}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_for_map", "UnitTest_for_map\UnitTest_for_map.vcxproj", "{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{AFFC08DF-0572-442F-B573-03D779155667}.Release|x64.Build.0 = Release|x64
 		{AFFC08DF-0572-442F-B573-03D779155667}.Release|x86.ActiveCfg = Release|Win32
 		{AFFC08DF-0572-442F-B573-03D779155667}.Release|x86.Build.0 = Release|Win32
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Debug|x64.ActiveCfg = Debug|x64
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Debug|x64.Build.0 = Debug|x64
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Debug|x86.ActiveCfg = Debug|Win32
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Debug|x86.Build.0 = Debug|Win32
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Release|x64.ActiveCfg = Release|x64
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Release|x64.Build.0 = Release|x64
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Release|x86.ActiveCfg = Release|Win32
+		{0A7D2B6B-C886-4BE4-9533-DC4F19DA20B9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

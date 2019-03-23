@@ -62,10 +62,10 @@ private:
 			this->key = key;
 			this->height = 0;
 			this->parent = nullptr;
-			this->color = 'r';
+			this->color = 1;
 
 		};
-		char color;
+		bool color;
 		T key, data;
 		node * next_right, *next_left, *parent;
 		unsigned int height;
@@ -89,7 +89,7 @@ public:
 		bool operator!=(const nullptr_t) const override { return !operator==(nullptr); }
 		T2 operator*() const override { return current->data; }
 		T current_key() { return current->key; }
-		char current_color() { return current->color; }
+		bool current_color() { return current->color; }
 
 	};
 

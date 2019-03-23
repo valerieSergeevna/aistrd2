@@ -114,7 +114,7 @@ void RBTree<T,T2>::remove(T key)
 			current->color = successor->color;
 			current->key = successor->key;
 		}
-		if (successor->color == 'b')
+		if (successor->color == 0)
 			delfix(temp);
 	}
 }
@@ -122,35 +122,35 @@ template <typename T, typename T2 >
 void RBTree<T,T2>::delfix(node *removable)
 {
 	node *sibling;
-	while (removable != root && removable->color == 'b')
+	while (removable != root && removable->color == 0)
 	{
 		if (removable->parent->next_left == removable)
 		{
 			sibling = removable->parent->next_right;
-			if (sibling->color == 'r')
+			if (sibling->color == 1)
 			{
-				sibling->color = 'b';
-				removable->parent->color = 'r';
+				sibling->color = 0;
+				removable->parent->color = 1;
 				leftrotate(removable->parent);
 				sibling = removable->parent->next_right;
 			}
-			if (sibling->next_right->color == 'b'&& sibling->next_left->color == 'b')
+			if (sibling->next_right->color == 0&& sibling->next_left->color == 0)
 			{
-				sibling->color = 'r';
+				sibling->color = 1;
 				removable = removable->parent;
 			}
 			else
 			{
-				if (sibling->next_right->color == 'b')
+				if (sibling->next_right->color == 0)
 				{
-					sibling->next_left->color == 'b';
-					sibling->color = 'r';
+					sibling->next_left->color == 0;
+					sibling->color = 1;
 					rightrotate(sibling);
 					sibling = removable->parent->next_right;
 				}
 				sibling->color = removable->parent->color;
-				removable->parent->color = 'b';
-				sibling->next_right->color = 'b';
+				removable->parent->color = 0;
+				sibling->next_right->color = 0;
 				leftrotate(removable->parent);
 				removable = root;
 			}
@@ -158,36 +158,36 @@ void RBTree<T,T2>::delfix(node *removable)
 		else
 		{
 			sibling = removable->parent->next_left;
-			if (sibling->color == 'r')
+			if (sibling->color == 1)
 			{
-				sibling->color = 'b';
-				removable->parent->color = 'r';
+				sibling->color = 0;
+				removable->parent->color = 1;
 				rightrotate(removable->parent);
 				sibling = removable->parent->next_left;
 			}
-			if (sibling->next_left->color == 'b'&& sibling->next_right->color == 'b')
+			if (sibling->next_left->color == 0&& sibling->next_right->color == 0)
 			{
-				sibling->color = 'r';
+				sibling->color = 1;
 				removable = removable->parent;
 			}
 			else
 			{
-				if (sibling->next_left->color == 'b')
+				if (sibling->next_left->color == 0)
 				{
-					sibling->next_right->color = 'b';
-					sibling->color = 'r';
+					sibling->next_right->color = 0;
+					sibling->color = 1;
 					leftrotate(sibling);
 					sibling = removable->parent->next_left;
 				}
 				sibling->color = removable->parent->color;
-				removable->parent->color = 'b';
-				sibling->next_left->color = 'b';
+				removable->parent->color = 0;
+				sibling->next_left->color = 0;
 				rightrotate(removable->parent);
 				removable = root;
 			}
 		}
-		removable->color = 'b';
-		root->color = 'b';
+		removable->color = 0;
+		root->color = 0;
 	}
 }
 template <typename T, typename T2 >
@@ -334,10 +334,10 @@ void RBTree<T,T2>::insertfix(node *current) {
 	node *uncle;
 	if (root == current)
 	{
-		current->color = 'b';
+		current->color = 0;
 		return;
 	}
-	while (current->parent != nullptr && current->parent->color == 'r')
+	while (current->parent != nullptr && current->parent->color == 1)
 	{
 		node *granny = current->parent->parent;
 		if (granny->next_left == current->parent)
@@ -345,11 +345,11 @@ void RBTree<T,T2>::insertfix(node *current) {
 			if (granny->next_right != nullptr)
 			{
 				uncle = granny->next_right;
-				if (uncle->color == 'r')
+				if (uncle->color == 1)
 				{
-					current->parent->color = 'b';
-					uncle->color = 'b';
-					granny->color = 'r';
+					current->parent->color = 0;
+					uncle->color = 0;
+					granny->color = 1;
 					current = granny;
 				}
 			}
@@ -360,8 +360,8 @@ void RBTree<T,T2>::insertfix(node *current) {
 					current = current->parent;
 					leftrotate(current);
 				}
-				current->parent->color = 'b';
-				granny->color = 'r';
+				current->parent->color = 0;
+				granny->color = 1;
 				rightrotate(granny);
 			}
 		}
@@ -370,11 +370,11 @@ void RBTree<T,T2>::insertfix(node *current) {
 			if (granny->next_left != nullptr)
 			{
 				uncle = granny->next_left;
-				if (uncle->color == 'r')
+				if (uncle->color == 1)
 				{
-					current->parent->color = 'b';
-					uncle->color = 'b';
-					granny->color = 'r';
+					current->parent->color = 0;
+					uncle->color = 0;
+					granny->color = 1;
 					current = granny;
 				}
 			}
@@ -385,12 +385,12 @@ void RBTree<T,T2>::insertfix(node *current) {
 					current = current->parent;
 					rightrotate(current);
 				}
-				current->parent->color = 'b';
-				granny->color = 'r';
+				current->parent->color = 0;
+				granny->color = 1;
 				leftrotate(granny);
 			}
 		}
-		root->color = 'b';
+		root->color = 0;
 	}
 
 }
