@@ -9,9 +9,10 @@ void main()
 	RBTree<int,char> map;
 	map.insert(2, 'a');
 	map.insert(4, 'k');
-	map.insert(3, 'b');
+	map.insert(4, 'b');
 	map.insert(1, 'u');
 	map.insert(9, 'j');
+	map.find(4);
 	/*List.insert(2, 1);  //     2
 	List.insert(4, 2);  //   1   4
 	List.insert(3, 3);  // 0    3  9
@@ -34,6 +35,7 @@ void main()
 	List.insert(1, 'j');
 	List.insert(4, 'k');
 	List.insert(6, 'l');*/
+
 	map.get_value();
 	_getch();
 	//return;

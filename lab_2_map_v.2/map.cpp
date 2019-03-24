@@ -81,7 +81,7 @@ void RBTree<T,T2>::remove(T key)
 	}
 	if (found == 0)
 	{
-		throw out_of_range("error");
+		throw out_of_range("no this element");
 	}
 	else
 	{
