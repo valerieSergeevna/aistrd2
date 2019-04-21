@@ -12,7 +12,7 @@ namespace UnitTest_for_map
 		
 		TEST_METHOD(tree_root_color)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1);
 			int check;
 			auto it = map.create_bft_iterator();
@@ -25,7 +25,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(insert_int_)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1); 
 			map.insert(4, 2);  
 			map.insert(3, 3);  
@@ -42,7 +42,7 @@ namespace UnitTest_for_map
 		}
 		TEST_METHOD(test_insert_int_color)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1);  //     2
 			map.insert(4, 2);  //   1   4
 			map.insert(3, 3);  
@@ -59,7 +59,7 @@ namespace UnitTest_for_map
 		}
 		TEST_METHOD(test_insert_int_char)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			map.insert(2, 'a');  
 			map.insert(4, 'k'); 
 			map.insert(3, 'b');  
@@ -76,7 +76,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(test_remove_int_char)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			map.insert(2, 'a');
 			map.insert(4, 'k');
 			map.insert(3, 'b');
@@ -94,7 +94,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(test_remove_int_char_color)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			map.insert(2, 'a');
 			map.insert(4, 'k');
 			map.insert(3, 'b');
@@ -112,7 +112,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(test_remove_int_char_exception)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			map.insert(2, 'a');
 			map.insert(4, 'k');
 			map.insert(3, 'b');
@@ -130,7 +130,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(test_remove_int_char_none__exception)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			try {
 				map.remove(0);
 			}
@@ -143,7 +143,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(find_int_1)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1);
 			map.insert(4, 2);
 			map.insert(3, 3);
@@ -154,7 +154,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(find_int_2)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1);
 			map.insert(4, 2);
 			map.insert(1, 3);
@@ -165,7 +165,7 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(find_int_exception)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			map.insert(2, 1);
 			map.insert(4, 2);
 			map.insert(1, 3);
@@ -178,28 +178,28 @@ namespace UnitTest_for_map
 
 		TEST_METHOD(find_int_exception_2)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			try { map.find(0); }
 			catch (const std::out_of_range& error) { Assert::AreEqual("error", error.what()); }
 		}
 		
 		TEST_METHOD(get_keys_exception)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			try { map.get_keys(); }
 			catch (const std::out_of_range& error) { Assert::AreEqual("error", error.what()); }
 		}
 
 		TEST_METHOD(get_value_exception)
 		{
-			RBTree<int, int> map;
+			map<int, int> map;
 			try { map.get_value(); }
 			catch (const std::out_of_range& error) { Assert::AreEqual("error", error.what()); }
 		}
 
 		TEST_METHOD(find_char)
 		{
-			RBTree<int, char> map;
+			map<int, char> map;
 			map.insert(2, 'a');
 			map.insert(4, 'k');
 			map.insert(4, 'b');

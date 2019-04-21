@@ -47,7 +47,7 @@ queue<item>::~queue()
 }
 
 template <typename T, typename T2 >
-class RBTree //на map
+class map //на map
 {
 private:
 
@@ -81,8 +81,8 @@ private:
 	node * root;
 	size_t size;
 public:
-	RBTree();
-	~RBTree();
+	map();
+	~map();
 	class TreeIterator : public Iterator<T, T2> {
 	protected:
 		node *current;
@@ -134,7 +134,7 @@ public:
 
 
 template<typename T, typename T2>
-void RBTree<T, T2>::BftIterator::operator++(T)
+void map<T, T2>::BftIterator::operator++(T)
 {
 	if (this->current->next_left != nullptr)
 		nodes.push(this->current->next_left);

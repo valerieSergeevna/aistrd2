@@ -4,14 +4,14 @@
 
 
 template <typename T, typename T2 >
-RBTree<T,T2>::RBTree()
+map<T,T2>::map()
 {
 	reset_list();
 	size = 0;
 }
 
 template <typename T, typename T2 >
-RBTree<T,T2>::~RBTree()
+map<T,T2>::~map()
 {
 	clear();
 /*	if (root != nullptr)
@@ -26,7 +26,7 @@ RBTree<T,T2>::~RBTree()
 }
 /*
 template<typename T>
-void RBTree<T>::node::Del()
+void map<T>::node::Del()
 {
 	if (this != nullptr) {
 		this->next_left->Del();
@@ -37,7 +37,7 @@ void RBTree<T>::node::Del()
 */
 
 /*template<typename T>
-void RBTree<T>::add_first(node *cur)
+void map<T>::add_first(node *cur)
 {
 
 	root = cur;
@@ -47,7 +47,7 @@ void RBTree<T>::add_first(node *cur)
 }
 */
 template <typename T, typename T2 >
-void RBTree<T,T2>::add_first(T key, T2 val)
+void map<T,T2>::add_first(T key, T2 val)
 {
 
 	root = new node(key, val);
@@ -55,7 +55,7 @@ void RBTree<T,T2>::add_first(T key, T2 val)
 	size++;
 }
 template <typename T, typename T2 >
-void RBTree<T,T2>::remove(T key)
+void map<T,T2>::remove(T key)
 {
 	if (this->root == nullptr)
 	{
@@ -122,7 +122,7 @@ void RBTree<T,T2>::remove(T key)
 }
 
 template <typename T, typename T2 >
-T2 RBTree<T,T2>::find(T key)
+T2 map<T,T2>::find(T key)
 {
 	if (this->root == nullptr)
 	{
@@ -136,7 +136,7 @@ T2 RBTree<T,T2>::find(T key)
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::get_keys()
+void map<T,T2>::get_keys()
 {
 
 	if (this->root == nullptr)
@@ -151,7 +151,7 @@ void RBTree<T,T2>::get_keys()
 
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::get_value()
+void map<T,T2>::get_value()
 {
 	if (this->root == nullptr)
 	{
@@ -166,21 +166,21 @@ void RBTree<T,T2>::get_value()
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::clear()
+void map<T,T2>::clear()
 {
 	while (size > 0)
 		remove(root->key);
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::reset_list()
+void map<T,T2>::reset_list()
 {
 	//	cur = nullptr;
 	root = nullptr;
 }
 
 /*template <typename T>
-typename RBTree<T>::node* RBTree<T>::get_uncle(node *cur) {
+typename map<T>::node* map<T>::get_uncle(node *cur) {
 	node *granny = get_grandparent(cur);
 	if (granny == nullptr)
 		return nullptr; // No grandparent means no uncle
@@ -191,7 +191,7 @@ typename RBTree<T>::node* RBTree<T>::get_uncle(node *cur) {
 }
 
 template <typename T>
-typename RBTree<T>::node* RBTree<T>::get_grandparent(node *cur) {
+typename map<T>::node* map<T>::get_grandparent(node *cur) {
 	if ((cur != nullptr) && (cur->parent != nullptr))
 		return cur->parent->parent;
 	else
@@ -199,7 +199,7 @@ typename RBTree<T>::node* RBTree<T>::get_grandparent(node *cur) {
 }
 
 template<typename T>
-typename RBTree<T>::node * RBTree<T>::get_sibling(node *current)
+typename map<T>::node * map<T>::get_sibling(node *current)
 {
 	if (current == current->parent->next_left)
 		return current->parent->next_right;
@@ -208,7 +208,7 @@ typename RBTree<T>::node * RBTree<T>::get_sibling(node *current)
 }
 */
 /*template <typename T, typename T2 >
-typename RBTree<T,T2>::node * RBTree<T,T2>::get_successor(node *current)
+typename map<T,T2>::node * map<T,T2>::get_successor(node *current)
 {
 	node *successor = nullptr;
 	if (current->next_left != nullptr)
@@ -228,7 +228,7 @@ typename RBTree<T,T2>::node * RBTree<T,T2>::get_successor(node *current)
 */
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::insert(T key, T2 value) {
+void map<T,T2>::insert(T key, T2 value) {
 
 	node *temp, *prev;
 	node *current = new node(key, value);
@@ -261,7 +261,7 @@ void RBTree<T,T2>::insert(T key, T2 value) {
 }
 
 template<typename T, typename T2>
-void RBTree<T, T2>::delfix(node *fixable)
+void map<T, T2>::delfix(node *fixable)
 {
 
 	node *sibling;
@@ -338,7 +338,7 @@ void RBTree<T, T2>::delfix(node *fixable)
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::insertfix(node *current) {
+void map<T,T2>::insertfix(node *current) {
 	node *uncle;
 	//0 - black
 	//1 - red
@@ -413,7 +413,7 @@ void RBTree<T,T2>::insertfix(node *current) {
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::leftrotate(node *current)
+void map<T,T2>::leftrotate(node *current)
 {
 	if (current->next_right == nullptr)
 		return;
@@ -444,7 +444,7 @@ void RBTree<T,T2>::leftrotate(node *current)
 }
 
 template <typename T, typename T2 >
-void RBTree<T,T2>::rightrotate(node *current)
+void map<T,T2>::rightrotate(node *current)
 {
 	if (current->next_left == nullptr)
 		return;

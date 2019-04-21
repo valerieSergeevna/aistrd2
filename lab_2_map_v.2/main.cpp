@@ -6,7 +6,7 @@
 
 void main()
 {
-	RBTree<int,char> map;
+	map<int,char> map;
 	
 	map.insert(2, 'a');
 	map.insert(4, 'k');
