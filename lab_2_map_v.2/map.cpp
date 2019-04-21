@@ -207,7 +207,7 @@ typename map<T>::node * map<T>::get_sibling(node *current)
 		return current->parent->next_left;
 }
 */
-/*template <typename T, typename T2 >
+template <typename T, typename T2 >
 typename map<T,T2>::node * map<T,T2>::get_successor(node *current)
 {
 	node *successor = nullptr;
@@ -225,7 +225,7 @@ typename map<T,T2>::node * map<T,T2>::get_successor(node *current)
 	}
 	return successor;
 }
-*/
+
 
 template <typename T, typename T2 >
 void map<T,T2>::insert(T key, T2 value) {

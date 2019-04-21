@@ -60,7 +60,7 @@ private:
 			this->next_left = next1;
 			this->next_right = next2;
 			this->key = key;
-			this->height = 0;
+	//		this->height = 0;
 			this->parent = nullptr;
 			this->color = 1;
 
@@ -78,6 +78,7 @@ private:
 	void insertfix(node *t);
 	void leftrotate(node *);
 	void rightrotate(node *);
+	node *get_successor(node *current);
 	node * root;
 	size_t size;
 public:
