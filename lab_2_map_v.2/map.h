@@ -47,7 +47,7 @@ queue<item>::~queue()
 }
 
 template <typename T, typename T2 >
-class RBTree
+class RBTree //на map
 {
 private:
 
@@ -66,14 +66,18 @@ private:
 
 		};
 		bool color;
-		T key, data;
+		T key;
+		T2 data;
 		node * next_right, *next_left, *parent;
-		unsigned int height;
+		//unsigned int height;
 		void Del();
 		~node();
 
 	};
-
+	void delfix(node*);
+	void insertfix(node *t);
+	void leftrotate(node *);
+	void rightrotate(node *);
 	node * root;
 	size_t size;
 public:
@@ -108,19 +112,13 @@ public:
 		BftIterator(node *root, size_t size) : TreeIterator(root), nodes(size) {}
 		void operator++(T) override;
 	};
-
-	//mode* remove(int);
 	void reset_list();
-	
-	node *get_uncle(node*);
-	node* get_grandparent(node *);
-	node* get_sibling(node *);
-	node *get_successor(node *);
 
-	//void add_first(node*);
+
+	// перенести в приват
 	void add_first(T, T2);
 	void remove(T);
-	void delfix(node*);
+	
 	T2 find(T);
 
 	void get_keys();
@@ -128,9 +126,7 @@ public:
 	void get_value();
 	void clear();
 	void insert(T,T2);
-	void insertfix(node *t);
-	void leftrotate(node *);
-	void rightrotate(node *);
+
 
 	BftIterator create_bft_iterator() { return BftIterator(root, size); }
 };

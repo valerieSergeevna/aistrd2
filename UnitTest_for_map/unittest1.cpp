@@ -84,7 +84,7 @@ namespace UnitTest_for_map
 			map.insert(9, 'j');
 			map.remove(3);
 			int i = 0;
-			char check[4] = { 'b','u','k','j' };
+			char check[4] = { 'a','u','k','j' };
 			auto it = map.create_bft_iterator();
 			for (; it != nullptr; it++)
 			{

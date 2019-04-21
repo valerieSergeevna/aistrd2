@@ -113,84 +113,14 @@ void RBTree<T,T2>::remove(T key)
 		{
 			current->color = successor->color;
 			current->key = successor->key;
+			current->data = successor->data;
 		}
 		if (successor->color == 0)
 			delfix(temp);
 	}
 	size--;
 }
-template <typename T, typename T2 >
-void RBTree<T,T2>::delfix(node *removable)
-{
-	node *sibling;
-	while (removable != root && removable->color == 0)
-	{
-		if (removable->parent->next_left == removable)
-		{
-			sibling = removable->parent->next_right;
-			if (sibling->color == 1)
-			{
-				sibling->color = 0;
-				removable->parent->color = 1;
-				leftrotate(removable->parent);
-				sibling = removable->parent->next_right;
-			}
-			if (sibling->next_right->color == 0&& sibling->next_left->color == 0)
-			{
-				sibling->color = 1;
-				removable = removable->parent;
-			}
-			else
-			{
-				if (sibling->next_right->color == 0)
-				{
-					sibling->next_left->color == 0;
-					sibling->color = 1;
-					rightrotate(sibling);
-					sibling = removable->parent->next_right;
-				}
-				sibling->color = removable->parent->color;
-				removable->parent->color = 0;
-				sibling->next_right->color = 0;
-				leftrotate(removable->parent);
-				removable = root;
-			}
-		}
-		else
-		{
-			sibling = removable->parent->next_left;
-			if (sibling->color == 1)
-			{
-				sibling->color = 0;
-				removable->parent->color = 1;
-				rightrotate(removable->parent);
-				sibling = removable->parent->next_left;
-			}
-			if (sibling->next_left->color == 0&& sibling->next_right->color == 0)
-			{
-				sibling->color = 1;
-				removable = removable->parent;
-			}
-			else
-			{
-				if (sibling->next_left->color == 0)
-				{
-					sibling->next_right->color = 0;
-					sibling->color = 1;
-					leftrotate(sibling);
-					sibling = removable->parent->next_left;
-				}
-				sibling->color = removable->parent->color;
-				removable->parent->color = 0;
-				sibling->next_left->color = 0;
-				rightrotate(removable->parent);
-				removable = root;
-			}
-		}
-		removable->color = 0;
-		root->color = 0;
-	}
-}
+
 template <typename T, typename T2 >
 T2 RBTree<T,T2>::find(T key)
 {
@@ -277,7 +207,7 @@ typename RBTree<T>::node * RBTree<T>::get_sibling(node *current)
 		return current->parent->next_left;
 }
 */
-template <typename T, typename T2 >
+/*template <typename T, typename T2 >
 typename RBTree<T,T2>::node * RBTree<T,T2>::get_successor(node *current)
 {
 	node *successor = nullptr;
@@ -295,7 +225,7 @@ typename RBTree<T,T2>::node * RBTree<T,T2>::get_successor(node *current)
 	}
 	return successor;
 }
-
+*/
 
 template <typename T, typename T2 >
 void RBTree<T,T2>::insert(T key, T2 value) {
@@ -330,9 +260,89 @@ void RBTree<T,T2>::insert(T key, T2 value) {
 	size++;
 }
 
+template<typename T, typename T2>
+void RBTree<T, T2>::delfix(node *fixable)
+{
+
+	node *sibling;
+	while (fixable != root && fixable->color == 0)
+	{
+		if (fixable->parent->next_left == fixable)
+		{
+			sibling = fixable->parent->next_right;
+			if (sibling->color == 1) //sibling is red. In this case, we change the colors of the ancestor and the sibling, and
+									//then make a rotation to the left around the ancestor, making the grandfather of fixable.
+			{
+				sibling->color = 0;
+				fixable->parent->color = 1;
+				leftrotate(fixable->parent);
+				sibling = fixable->parent->next_right;
+			}
+			if (sibling->next_right->color == 0 && sibling->next_left->color == 0) //In this case, we repaint sibling to red.
+			{
+				sibling->color = 1;
+				fixable = fixable->parent;
+			}
+			else
+			{
+				if (sibling->next_right->color == 0) //In this case, we rotate the tree to the right around sibling. 
+					//Thus, the left descendant S becomes his father and his new brother N. 
+				//	After that, we change the colors of S and his new father. 
+				{
+					sibling->next_left->color == 0;
+					sibling->color = 1;
+					rightrotate(sibling);
+					sibling = fixable->parent->next_right;
+				}
+				sibling->color = fixable->parent->color;
+				fixable->parent->color = 0;
+				sibling->next_right->color = 0;
+				leftrotate(fixable->parent);
+				fixable = root;
+			}
+		}
+		else
+		{
+			sibling = fixable->parent->next_left;
+			if (sibling->color == 1)
+			{
+				sibling->color = 0;
+				fixable->parent->color = 1;
+				rightrotate(fixable->parent);
+				sibling = fixable->parent->next_left;
+			}
+			if (sibling->next_left->color == 0 && sibling->next_right->color == 0)
+			{
+				sibling->color = 1;
+				fixable = fixable->parent;
+			}
+			else
+			{
+				if (sibling->next_left->color == 0)
+				{
+					sibling->next_right->color = 0;
+					sibling->color = 1;
+					leftrotate(sibling);
+					sibling = fixable->parent->next_left;
+				}
+				sibling->color = fixable->parent->color;
+				fixable->parent->color = 0;
+				sibling->next_left->color = 0;
+				rightrotate(fixable->parent);
+				fixable = root;
+			}
+		}
+		fixable->color = 0;
+		root->color = 0;
+	}
+}
+
 template <typename T, typename T2 >
 void RBTree<T,T2>::insertfix(node *current) {
 	node *uncle;
+	//0 - black
+	//1 - red
+	//The current node  at the root of the tree.
 	if (root == current)
 	{
 		current->color = 0;
@@ -340,8 +350,9 @@ void RBTree<T,T2>::insertfix(node *current) {
 	}
 	while (current->parent != nullptr && current->parent->color == 1)
 	{
-		node *granny = current->parent->parent;
-		if (granny->next_left == current->parent)
+		node *granny = current->parent->parent; // get grandfather of the current node
+		if (granny->next_left == current->parent) // If both the parent and uncle are red, then both of them 
+												  //can be repainted black and the grandfather will turn red.(right side)
 		{
 			if (granny->next_right != nullptr)
 			{
@@ -356,7 +367,9 @@ void RBTree<T,T2>::insertfix(node *current) {
 			}
 			else
 			{
-				if (current->parent->next_right == current)
+				if (current->parent->next_right == current) //The parent is red, but the uncle is black. Also, the current node is the 
+															//right descendant, and in turn the left descendant of its ancestor.
+															//In this case, a tree can be rotated, which changes the roles of the current node and its ancestor.
 				{
 					current = current->parent;
 					leftrotate(current);
@@ -368,7 +381,8 @@ void RBTree<T,T2>::insertfix(node *current) {
 		}
 		else
 		{
-			if (granny->next_left != nullptr)
+			if (granny->next_left != nullptr)// If both the parent and uncle are red, then both of them 
+												  //can be repainted black and the grandfather will turn red.(left side)
 			{
 				uncle = granny->next_left;
 				if (uncle->color == 1)
@@ -381,7 +395,9 @@ void RBTree<T,T2>::insertfix(node *current) {
 			}
 			else
 			{
-				if (current->parent->next_left == current)
+				if (current->parent->next_left == current) //The parent is red, but the uncle is black, the current node is the left descendant and the 
+															//left descendant. In this case, the tree is rotated by. 
+															//The result is a tree in which the former parent is now the parent of both the current node and the former grandfather.
 				{
 					current = current->parent;
 					rightrotate(current);

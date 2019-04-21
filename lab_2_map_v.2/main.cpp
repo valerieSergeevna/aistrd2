@@ -7,12 +7,13 @@
 void main()
 {
 	RBTree<int,char> map;
+	
 	map.insert(2, 'a');
 	map.insert(4, 'k');
-	map.insert(4, 'b');
+	map.insert(3, 'b');
 	map.insert(1, 'u');
 	map.insert(9, 'j');
-	map.find(4);
+	map.remove(3);
 	/*List.insert(2, 1);  //     2
 	List.insert(4, 2);  //   1   4
 	List.insert(3, 3);  // 0    3  9
